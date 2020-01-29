@@ -7,13 +7,11 @@
       :key="item.catId" 
       :class="index == num ? 'bg' : ''"
       @click="getrightLIst(index)">
-        <div class="navBox">
-          <h4>{{item.catName}}</h4>
-        </div>
+        <h4>{{item.catName}}</h4>
       </div>
     </div>
     <!-- 右视图 -->
-    <div class="rightBox" ref="rightBox" v-if='flag'>
+    <div class="rightBox" ref="rightBox">
       <div class="catLIst" 
       v-for="item in rightCatList" 
       :key="item.catId">
@@ -32,9 +30,9 @@
       </div>
     </div>
     
-    <div class="box" v-else-if='!flag'>
-      <span class="el-icon-loading"></span>
-    </div>
+    <!-- <div class="box" v-else-if='!flag'>
+      <div class="loading"></div>
+    </div> -->
   </div>
 </template>
 
@@ -44,17 +42,16 @@ export default {
   props: ['leftCatList', 'rightCatList'],
   data(){
     return{
-      flag: false,
       num: 0
     }
   },
   watch:{
-    rightCatList(n){
-      if(n){
-        this.flag = false;
-        setTimeout(() => {this.flag = true}, 500)
-      }
-    }
+    // rightCatList(n){
+    //   if(n){
+    //     this.flag = false;
+    //     setTimeout(() => {this.flag = true}, 500)
+    //   }
+    // }
   },
   methods:{
     // getList(index){
@@ -63,6 +60,8 @@ export default {
     // }
     getrightLIst(index=0){
       // index = index || 0;
+      //获取数据前加载loading
+      // this.$loading();
       this.$emit('rightCatListInit',index);
       this.$refs.rightBox.scrollTop = 0;
       this.num = index;
@@ -80,32 +79,28 @@ export default {
   .bg {
       background: $fc !important;
   }
-  
   .categories{
     width: 100%;
-    height: 88vh;
     display: flex;
+    height: calc(100vh - 2rem);
     background-color: $fc;
     .leftBox{
       flex: 1;
-      height: 100%;
+      // height: calc("100vh - 2rem"); 
+      height: 100%; 
       overflow: auto;
-      
+      display: flex;
+      flex-flow: column;
       .nav{
         background-color: $bc;
-        .navBox{
-          width: 100%;
-          height: 100%;
-          display: flex;
-          text-align: center;
-          h4{
+         width: 100%;
+         height: 100%;
+         text-align: center;
+         h4{
           padding: 0.1rem;
-          width: 100%;
           white-space: nowrap;
           cursor: pointer;
           }
-          
-        }  
         &:nth-of-type(1){
           border: 0;
         }
@@ -113,9 +108,8 @@ export default {
     }
     .rightBox{
       flex: 3;
-      height: 100%;
+      height: calc(100vh - 2rem);
       overflow: auto;
-
       .catLIst{
         width: 100%;
         display: flex;
@@ -151,11 +145,9 @@ export default {
     .box{
       flex: 3;
       position: relative;
-      span{
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%)
+      .loading{
+        @include center;
+        background-image: url("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3778296889,1405576255&fm=26&gp=0.jpg");
       }
     }
   }

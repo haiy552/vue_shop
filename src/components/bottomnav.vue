@@ -5,7 +5,7 @@
     :key="item.name"
     :class="index == num? 'bg' : ''"
     @click="cInit(item.ename,index)">
-        <span :class="item.class"></span>
+        <van-icon class="icon" :name="item.class" />
         <span v-text="item.name" ></span>
     </div>  
   </div>
@@ -37,31 +37,27 @@ export default {
 <style scoped lang="scss">
 @import '../common/style/mixin';
     .bg {
+      .icon,
       span{
         color: red !important;
       }
-        // background: $fc !important; 
     }
     .bottomnav{
         display: flex;
         position: fixed;
+        align-items: center;
         width:100%;
-        height: 0.8rem;
+        height: 1rem;
         bottom:0;
         background-color: $fc;
-        text-align: center;
-        align-items: center;
         box-shadow: 0px 5px 9px 5px rgba(0, 0, 0, 0.3);
+        // padding: 0.1rem 0.1rem 0.3rem 0.1rem;
         .nav{
-            flex:1;
-            height: 100%;
+            width: 25%;
+            height: 60%;
             display: flex;
             flex-flow: column;
-            text-align: center;
-            padding: 0.1rem;
-            span{
-                font-size: 0.2rem;
-            }
+            text-align: center; 
         }
     }
   

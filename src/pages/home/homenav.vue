@@ -3,10 +3,11 @@
    <!-- 标题 -->
    <tiTle class="font">
      <router-link :to="{path: '/sort'}">
-      <i class="el-icon-s-data"></i>
+      <van-icon class="icon" name="wap-nav"/>
      </router-link>
      <div class="search">
-       <i class="el-icon-search"></i>
+       <!-- <van-icon name="apps-o" /> -->
+       <van-icon class="icon" name="search" color="red"/>
        <input type="text" class="text" value='' ref="text" placeholder="电视" @keydown.enter="search()">
      </div>
      <span>登录</span>
@@ -32,10 +33,10 @@ export default {
   data(){
     return{
       navlist:[
-            {class:'el-icon-s-home', name:'首页', checked: true, ename: 'home'},
-            {class:'el-icon-menu', name:'分类', checked: false, ename: 'sort'},
-            {class:'el-icon-shopping-cart-2', name:'购物车', checked: false, ename: 'shop'},
-            {class:'el-icon-user', name:'我的', checked: false, ename: 'my'}
+            {class:'wap-home', name:'首页', checked: true, ename: 'home'},
+            {class:'shop-collect', name:'分类', checked: false, ename: 'sort'},
+            {class:'cart', name:'购物车', checked: false, ename: 'shop'},
+            {class:'friends', name:'我的', checked: false, ename: 'my'}
         ],
         num: 0
     }
@@ -75,17 +76,10 @@ export default {
 <style scoped lang="scss">
 @import '../../common/style/mixin';
     .homenav{
-        position: relative;
         width: 100%;
-        top: 0;
-        bottom: 0;
-        top: 0;
-        right: 0;
-        left: 0;
+        height: 100%;
         .font{
-          height: 6vh;
-          position: relative;
-          .el-icon-s-data{
+          .icon{
             @include ct;
             color: $fc;
             left: 0.2rem;
@@ -94,12 +88,12 @@ export default {
           .search{
             @include center;
             width: 5rem;
-            height: 4vh;
-            
-            .el-icon-search{
+            height: 0.5rem;
+            .icon{
               @include ct;
-              z-index: 2;
+              z-index: 3;
               left: 0.1rem;
+              font-size: 0.3rem;
             }
             .text{
               width: 100%;
@@ -108,7 +102,7 @@ export default {
               padding: 0.1rem 0.1rem 0.1rem 0.5rem;
               box-sizing: border-box;
               @include center;
-              z-index: 1;
+              z-index: 0;
               font-size: 0.2rem;
             }
           }
@@ -119,7 +113,7 @@ export default {
           }
         }
         .space{
-          height: 5%;
+          height: 1rem;
           background-color: #fff;
         }
     }

@@ -1,10 +1,10 @@
 <template>
   <div class="goodsList">
     <tiTle class="font">
-      <i class="el-icon-arrow-left" @click="goBack"></i>
+      <van-icon class="icon" name="arrow-left" @click="goBack" />
       <span class="font1">商品列表</span> 
     </tiTle>
-    <div class="infinite-list-wrapper" style="overflow:auto" v-if='flag'>
+    <div class="list" v-if='flag'>
         <li v-for="item in goodsList" 
         :key="item.goodsId" 
         @click="getgoodsDetail(item.goodsId)"
@@ -18,13 +18,15 @@
           </div>
         </li>
     </div>
+    
     <div class="box" v-else-if='!flag'>
-      <span class="el-icon-loading"></span>
+      <div class="loading"></div>
     </div>
   </div>
 </template>
 
 <script>
+
 import {goodsList} from '../../api/index'
 import tiTle from '../../components/tiTle';
 export default {
@@ -74,21 +76,19 @@ export default {
   },
   components:{
     tiTle
+
   }
 }
 </script>
 
 <style scoped lang="scss">
 @import '../../common/style/mixin';
-    .goodsList{
+     .goodsList{
       width: 100%;
-      height: 100vh;
+      height: 100%;
       background-color: $fc;
-      
       .font{
-       height: 6vh;
-       position: relative;
-       .el-icon-arrow-left{
+       .icon{
           @include ct;
           color: $fc;
           left: 0.2rem;
@@ -101,12 +101,11 @@ export default {
       }
       .box{
          @include center;
+         
       }
-      .infinite-list-wrapper{
+      .list{
         width: 100%;
-        height: 94vh;
-        display: flex;
-        flex-flow: column;
+        height: 100%;
         &:nth-of-type(n-1){
             border-bottom: 0;
         }
@@ -146,6 +145,7 @@ export default {
       }
       
     }
+
     
   
 </style>

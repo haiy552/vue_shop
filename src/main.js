@@ -2,19 +2,15 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import {loading} from './untils/index'
 import './common/js/fsrem'
 
-
-
-
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-
-Vue.use(ElementUI);
-
+Vue.prototype.$loading = loading
 Vue.config.productionTip = false
-
-
+import {  Swipe, SwipeItem , Icon } from 'vant';
+Vue.use(Swipe)
+   .use(SwipeItem)
+   .use(Icon);
 // const def_lazy_img = () => import('../static/img/loading.gif')
 // Vue.use(VueLazyLoad,{
 //   loading: def_lazy_img
