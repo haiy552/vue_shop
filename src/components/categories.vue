@@ -21,18 +21,12 @@
           v-for="it in item.children" 
           :key="it.catId" 
           @click="getPage(it.catId)">
-            <!-- <div class="catbox"> -->
               <img :src="it.catUrl" alt="">
               <span>{{it.catName}}</span>
-            <!-- </div> -->
           </div>
         </div>
       </div>
     </div>
-    
-    <!-- <div class="box" v-else-if='!flag'>
-      <div class="loading"></div>
-    </div> -->
   </div>
 </template>
 
@@ -61,7 +55,6 @@ export default {
     getrightLIst(index=0){
       // index = index || 0;
       //获取数据前加载loading
-      // this.$loading();
       this.$emit('rightCatListInit',index);
       this.$refs.rightBox.scrollTop = 0;
       this.num = index;
@@ -133,6 +126,9 @@ export default {
               overflow: hidden;
               text-overflow:ellipsis;
               white-space: nowrap;
+              display: block;
+              width: 100%;
+              text-align: center;
             }
             img{
               width: 100%;

@@ -1,7 +1,10 @@
 <template>
   <div class="floorList">
+      <!-- 每个网格 -->
       <div class="floorBox" v-for="item in floorDataList" :key="item.index">
+          <!-- 标题 -->
           <div class="top"><img :src="item[0].titleUrl" :alt="item.titleName"></div>
+          <!-- 分类 -->
           <div class="bottom">
               <li v-for="it in item[1]" :key="it.index">
                 <img :src="it.productUrl" alt="" >
@@ -34,32 +37,37 @@ export default {
  
   .floorList{
     width: 100%;
-    display: flex;
-    flex-flow: column;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0.1rem;
+    padding-top: 0.1rem;
     .floorBox{
-      display: flex;
-      flex-flow: column;
-      padding-top: 0.2rem;
-      // height: 6rem;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
       .top{
         width: 100%;
         img{
+          display: block;
           width: 100%;
+          height: 100%;
         }
       }
       .bottom{
-       
+       display: grid;
+       grid-template-columns: 1.2fr 1fr 1fr;
+       grid-gap: 0.1rem;
         li{
-          float: left;
-          width: 33.33%;
-          &:nth-of-type(n+2){
-          height: calc(33.33vw * 386 / 232 / 2); 
-          border-left: 0.1rem solid #fff;  
-        }
-         &:nth-child(2),
-         &:nth-child(3){
-          border-bottom: 0.1rem solid #fff;  
-        }
+          &:nth-of-type(1){
+           grid-row: 1/3;
+          }
+        //   &:nth-of-type(2),
+        //   &:nth-of-type(3){
+        //    grid-row:1;
+        //   }
+        //  &:nth-of-type(4){
+        //    grid-row:2;
+        //   }
+        
           img{
             display: block;
             width: 100%;

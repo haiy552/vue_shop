@@ -106,7 +106,7 @@ export default {
       .list{
         width: 100%;
         height: 100%;
-        &:nth-of-type(n-1){
+        &:nth-of-type(n){
             border-bottom: 0;
         }
           .list-item{

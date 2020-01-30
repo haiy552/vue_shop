@@ -3,7 +3,7 @@
     <div class="nav" 
     v-for="(item,index) in navlist" 
     :key="item.name"
-    :class="index == num? 'bg' : ''"
+    :class="item.checked? 'bg' : ''"
     @click="cInit(item.ename,index)">
         <van-icon class="icon" :name="item.class" />
         <span v-text="item.name" ></span>
@@ -15,7 +15,7 @@
 
 export default {
   name: 'bottomnav',
-  props: ['navlist', 'num'],
+  props: ['navlist'],
   data(){
       return {
       
@@ -27,7 +27,8 @@ export default {
   methods:{
     cInit(url,index){
         this.$router.push({path:`/${url}`});
-        this.$emit('changeNum',index);
+        this.navlist.forEach(item => {item.checked = false});
+        this.navlist[index].checked = true;
     }
   }
 

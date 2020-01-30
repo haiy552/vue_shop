@@ -24,8 +24,7 @@ export default {
       // 导航列表
       navList:[],
       // 楼层列表
-      floorDataList:[],
-      
+      floorDataList:[]
     }
   },
   created(){
@@ -74,7 +73,7 @@ export default {
 <style scoped lang="scss">
     .home{
         width: 100%;
-        height: 89vh;
+        height: calc(100vh -2rem);
         background-color: #fff;
         overflow: auto;
     }

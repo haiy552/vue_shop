@@ -2,9 +2,7 @@
   <div class="homenav">
    <!-- 标题 -->
    <tiTle class="font">
-     <router-link :to="{path: '/sort'}">
-      <van-icon class="icon" name="wap-nav"/>
-     </router-link>
+      <van-icon class="icon" name="wap-nav" @click="goSort"/>
      <div class="search">
        <!-- <van-icon name="apps-o" /> -->
        <van-icon class="icon" name="search" color="red"/>
@@ -20,7 +18,6 @@
    <bottomnav 
    class="bottomnav" 
    :navlist="navlist"
-   :num="num"
    @changeNum="changeNum"></bottomnav>  
   </div>
 </template>
@@ -37,24 +34,16 @@ export default {
             {class:'shop-collect', name:'分类', checked: false, ename: 'sort'},
             {class:'cart', name:'购物车', checked: false, ename: 'shop'},
             {class:'friends', name:'我的', checked: false, ename: 'my'}
-        ],
-        num: 0
+        ]   
     }
   },
   created(){
    
   },
-  filters:{
-    changeTitlt(data){
-      let title;
-      data.map(item => {
-        if(item.checked == true){   
-          title = item.name;
-        }
-      })
-      return title
+  watch:{
+    navlist(n){
+      return n
     }
-    
   },
   methods:{
       changeNum(index){
@@ -63,6 +52,11 @@ export default {
       search(){
         let value = this.$refs.text.value;
         this.$router.push({path:`/goodsList?name=${value}`})
+      },
+      goSort(){
+        this.$router.push({path:`/sort`});
+        this.navlist.forEach(item => {item.checked = false});
+        this.navlist[1].checked = true;
       }
 
   },
