@@ -1,10 +1,11 @@
 <template>
+  <!-- 底部导航 -->
   <div class="bottomnav">
     <div class="nav" 
-    v-for="(item,index) in navlist" 
+    v-for="(item) in navlist" 
     :key="item.name"
-    :class="item.checked? 'bg' : ''"
-    @click="cInit(item.ename,index)">
+    :class="$route.path==`/${item.ename}`? 'bg' : ''"
+    @click="cInit(item.ename)">
         <van-icon class="icon" :name="item.class" />
         <span v-text="item.name" ></span>
     </div>  
@@ -12,31 +13,19 @@
 </template>
 
 <script>
-
 export default {
   name: 'bottomnav',
   props: ['navlist'],
-  data(){
-      return {
-      
-      }
-  },
-  created(){
-    
-  },
   methods:{
-    cInit(url,index){
+    cInit(url){
         this.$router.push({path:`/${url}`});
-        this.navlist.forEach(item => {item.checked = false});
-        this.navlist[index].checked = true;
     }
   }
-
 }
 </script>
 
 <style scoped lang="scss">
-@import '../common/style/mixin';
+@import '@/common/style/mixin';
     .bg {
       .icon,
       span{
@@ -54,7 +43,7 @@ export default {
         box-shadow: 0px 5px 9px 5px rgba(0, 0, 0, 0.3);
         // padding: 0.1rem 0.1rem 0.3rem 0.1rem;
         .nav{
-            width: 25%;
+            width: 33.33%;
             height: 60%;
             display: flex;
             flex-flow: column;

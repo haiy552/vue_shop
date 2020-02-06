@@ -1,4 +1,5 @@
 <template>
+  <!-- header -->
   <div class="tiTle">
       <slot></slot>    
   </div>
@@ -7,24 +8,12 @@
 <script>
 
 export default {
-  name: 'varlist',
-  data(){
-    return {
-      
-    }
-  },
-  computed:{
-    
-  },
-  methods:{
-    
-  }
-
+  name: 'varlist'
 }
 </script>
 
 <style scoped lang="scss">
-@import '../common/style/mixin';
+@import '@/common/style/mixin';
 
   .tiTle{
       width:100%;

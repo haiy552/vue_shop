@@ -1,16 +1,6 @@
 <template>
-  <div class="floorList">
-      <!-- 每个网格 -->
-      <div class="floorBox" v-for="item in floorDataList" :key="item.index">
-          <!-- 标题 -->
-          <div class="top"><img :src="item[0].titleUrl" :alt="item.titleName"></div>
-          <!-- 分类 -->
-          <div class="bottom">
-              <li v-for="it in item[1]" :key="it.index" >
-                <img :src="it.productUrl" alt="" >
-              </li>
-          </div>     
-      </div>
+  <div class="goTop">
+      
   </div>
 </template>
 
@@ -18,7 +8,6 @@
 
 export default {
   name: 'floorList',
-  props: ['floorDataList'],
 }
 </script>
 

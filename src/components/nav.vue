@@ -1,11 +1,9 @@
 <template>
+  <!-- 首页菜单导航 -->
   <div class="nav">
       <li class="navTitle" v-for="item in navList" :key="item.name">
-          <!-- <router-link> -->
-              <img class="navImg" :src="item.url" title="item.name" alt="item.name">
-        <!-- </router-link> -->
+          <img class="navImg" :src="item.url" title="item.name" alt="item.name">
       </li>  
-      
   </div>
 </template>
 
@@ -14,18 +12,11 @@
 export default {
   name: 'varlist',
   props: ['navList'],
-  created(){
-    
-  },
-  methods:{
-    
-  }
-
 }
 </script>
 
 <style scoped lang="scss">
-@import '../common/style/mixin';
+@import '@/common/style/mixin';
 
   .nav{
       width:100%;
@@ -39,6 +30,5 @@ export default {
               width: 100%;
           }
       }
-      
   }
 </style>

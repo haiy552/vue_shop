@@ -3,18 +3,18 @@
    <!-- 轮播图 -->
    <carlist class="carphoto" :photoList="photoList"></carlist>
    <!-- 导航栏 -->
-   <navList :navList="navList"></navList>
+   <navList :navList="navList" ></navList>
    <!-- 楼层 -->
-   <floorList :floorDataList="floorDataList"></floorList> 
+   <floorList :floorDataList="floorDataList" ></floorList> 
   </div>
 </template>
 <script>
 // promise请求
-import { car, nav, floordata} from "../../../api/index";
+import { car, nav, floordata} from "@/api/index";
 // 组件
-import carlist from '../../../components/carlist';
-import navList from '../../../components/nav';
-import floorList from '../../../components/floorList';
+import carlist from '@/components/carlist';
+import navList from '@/components/nav';
+import floorList from '@/components/floorList';
 export default {
   name: 'home',
   data(){
@@ -37,9 +37,8 @@ export default {
   },
   methods:{
     cInit(res){
-      // let data = res.data.message;
-          return res.map(item => {
-            return {id: item.goods_id, url: item.image_src, name: item.name, }
+      return res.map(item => {
+          return {id: item.goods_id, url: item.image_src, name: item.name, }
       })
     },
     carList(){
@@ -48,19 +47,24 @@ export default {
     create_nav(){
       nav().then(res => {this.navList = this.cInit(res)})
     },
-
     floorList_init(){
       floordata().then(res => {
-        // let data = res.data.message;
-          this.floorDataList = res.map(item => {
-            return [{titleName:item.floor_title.name, titleUrl:item.floor_title.image_src},
-            item.product_list.map(item => {return {productName: item.name, productUrl: item.image_src, navigatorUrl: item.navigator_url}})
-            ]
-          })
+        this.floorDataList = res.map(item => {
+          return [{titleName:item.floor_title.name, titleUrl:item.floor_title.image_src},
+          item.product_list.map(item => {return {productName: item.name, productUrl: item.image_src, navigatorUrl: item.navigator_url}})
+          ]
+        })
       })
+    },
+    prompting(){
+      this.Toast('不好意思，此模块未开发');
     }
-
-
+    // onRefresh() {
+    //     setTimeout(() => {
+    //     this.isLoading = false;
+    //     // location.reload([false]);
+    //     }, 1000);
+    // },
   },
   components:{
     carlist,

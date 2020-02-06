@@ -1,12 +1,16 @@
 <template>
-  <div class="carlist" >
-    <swiper :options="swiperOption" class="carbox">
-      <swiperSlide v-for="item in photoList" :key="item.id" class="list">
+  <!-- 轮播图组件 -->
+  <div class="carlist" :class="photoList.length == 0? 'img' : ''" >
+    <swiper 
+    :options="swiperOption"
+    v-if="photoList.length != 0"
+    class="carbox">
+      <swiperSlide v-for="item in photoList" 
+      :key="item.id"
+      class="list" >
         <img :src="item.url" />
       </swiperSlide>
       <div class="swiper-pagination" slot="pagination"></div>
-      <!-- <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div> -->
     </swiper>
   </div>
 </template>
@@ -21,10 +25,11 @@ export default {
       swiperOption: {
         pagination: {
           el: '.swiper-pagination',
-          clickable: true // 允许点击小圆点跳转
+          clickable: true, // 允许点击小圆点跳转
+          color: "red"
         },
         autoplay: {
-          delay: 3000,
+          delay: 3000, // 轮播图播放的时间段
           disableOnInteraction: false // 手动切换之后继续自动轮播
         },
         loop: true,
@@ -50,13 +55,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .img{
+    background: url("http://hbimg.b0.upaiyun.com/1e3ead27ad747c7c92e659ac5774587a680bb8d25252-mRVFlu_fw658") no-repeat ;
+    background-size: 50% 50%;
+    background-position: 50% 50%;
+  }
   .carlist{
     width: 100%;
     height: 4rem;
     .carbox{
       width: 100%;
       height: 100%;
-      // background-image: url("http://pic174.nipic.com/file/20180725/25005174_212224094000_2.jpg");
       .list{
         width: 100%;
         height: 100%;

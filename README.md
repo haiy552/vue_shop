@@ -1,24 +1,42 @@
-# vue_shop
+#shop购物平台
 
-## Project setup
-```
-npm install
-```
+后端API: https://www.showdoc.cc/128719739414963
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+#### 包
+> - [x] UI框架: vant
+> - [x] 轮播: swiper
+> - [x] 缓存:vue-page-stack
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### 浏览方式一:
+    1.安装依赖 npm i
+    2.运行     npm run serve
 
-### Lints and fixes files
-```
-npm run lint
-```
+### 浏览方式二:
+    1.也可以打开dist文件夹里的index.html直接浏览
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+#### 1、登录
+    用户名: admin   密码: 1234
+
+#### 2、首页
+> - [x] Grid布局
+> - [x] 搜索
+
+#### 3、分类
+> - [x] 搜索
+> - [x] 缓存滚动条位置和请求数据
+
+#### 4、商品列表
+> - [x] 缓存滚动条位置和请求数据
+
+#### 5、商品详细
+> - [x] 加入购物车
+> - [x] 购物车数量显示
+> - [x] 缓存加入购物车的商品
+
+#### 6、购物车
+> - [x] 删除商品
+> - [x] 修改商品数量
+> - [x] 商品点选、全选
+> - [x] 计算选中商品的总价
+> - [x] 缓存以上的操作，在刷新后不会消失

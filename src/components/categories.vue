@@ -1,7 +1,7 @@
 <template>
   <div class="categories">
-    <div class="leftBox">
-      <!-- 左导航 -->
+    <!-- 左导航 -->
+    <div class="leftBox" ref="leftBox">
       <div class="nav" 
       v-for="(item, index) in leftCatList" 
       :key="item.catId" 
@@ -39,13 +39,18 @@ export default {
       num: 0
     }
   },
-  watch:{
-    // rightCatList(n){
-    //   if(n){
-    //     this.flag = false;
-    //     setTimeout(() => {this.flag = true}, 500)
-    //   }
-    // }
+  deactivated () {
+    let leftScroll = this.$refs.leftBox.scrollTop;
+    let rightScroll = this.$refs.rightBox.scrollTop;
+    let cateScroll = [{"leftScroll":leftScroll},{"rightScroll":rightScroll}];
+    window.sessionStorage.setItem('cateScroll', JSON.stringify(cateScroll));
+  },
+  activated () {
+    let cateScroll = JSON.parse(window.sessionStorage.getItem("cateScroll")) || null;
+    if(cateScroll){
+      this.$refs.leftBox.scrollTop = cateScroll[0].leftScroll;
+      this.$refs.rightBox.scrollTop = cateScroll[1].rightScroll;
+    }
   },
   methods:{
     // getList(index){
@@ -53,8 +58,6 @@ export default {
     //   this.catList[index].flag = !this.catList[index].flag;
     // }
     getrightLIst(index=0){
-      // index = index || 0;
-      //获取数据前加载loading
       this.$emit('rightCatListInit',index);
       this.$refs.rightBox.scrollTop = 0;
       this.num = index;
@@ -62,15 +65,16 @@ export default {
     getPage(id){
       this.$router.push({path:`/goodsList?id=${id}`})
     }
-    
   }
 }
 </script>
-
 <style scoped lang="scss">
-@import '../common/style/mixin';
+@import '@/common/style/mixin';
   .bg {
       background: $fc !important;
+      h4{
+        color: red;
+      }
   }
   .categories{
     width: 100%;
@@ -79,15 +83,11 @@ export default {
     background-color: $fc;
     .leftBox{
       flex: 1;
-      // height: calc("100vh - 2rem"); 
-      height: 100%; 
-      overflow: auto;
+      overflow: auto; 
       display: flex;
       flex-flow: column;
       .nav{
-        background-color: $bc;
-         width: 100%;
-         height: 100%;
+        background-color: #f8f8f8;
          text-align: center;
          h4{
           padding: 0.1rem;
@@ -136,14 +136,6 @@ export default {
             }
           } 
         }
-      }
-    }
-    .box{
-      flex: 3;
-      position: relative;
-      .loading{
-        @include center;
-        background-image: url("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3778296889,1405576255&fm=26&gp=0.jpg");
       }
     }
   }
